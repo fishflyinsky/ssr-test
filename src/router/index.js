@@ -1,4 +1,4 @@
-const vueRouter = require("vue-router");
+const vueRouter = require("vue-router");//vue-router前端控制渲染
 const Vue = require("vue");
 
 Vue.use(vueRouter);

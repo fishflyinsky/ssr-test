@@ -25,4 +25,8 @@ module.exports = (context)=>{
         </div>
         `
     });
+    return {
+      app,
+      router
+    }
 }

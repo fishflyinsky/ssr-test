@@ -1,5 +1,6 @@
 const express = require("express");
-const vueApp = require("./src/app.js");
+//const vueApp = require("./src/app.js");
+const vueApp = require("./src/entry-server.js");
 let path = require("path");
 const vueServerRender = require("vue-server-renderer").createRenderer({
     template:require("fs").readFileSync(path.join(__dirname,"./index.html"),"utf-8")
@@ -14,9 +15,12 @@ app.get("*",(request,response)=>{
     //     },
     //     template:'<h1>{{message}}</h1>'
     // });
-    let vm = vueApp({});
+    //let vm = vueApp({});
     response.status(200);
     response.setHeader('Content-Type','text/html;charset-utf-8;');
+
+    let {url} = request;
+    let vm = await vueApp({url});
     vueServerRender.renderToString(vm).then((html)=>{
          response.end(html);
     }).catch(error=>console.log(error));
